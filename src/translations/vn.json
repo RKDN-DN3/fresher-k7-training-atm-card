@@ -1,0 +1,8 @@
+{
+    "register": {
+        "title": "Đăng Ký",
+        "button.submit":"Đăng Ký",
+        "have.already.account":"Bạn đã có tài khoản hay chưa?",
+        "login.now":"Đăng nhập ngay"
+    }
+}

@@ -1,0 +1,29 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+      "email": "dong2@gmail.com",
+      "password": "$2a$10$vkKjyXc1xE9LBlD.SRaNhuLvzziiA6g00SxZ.tt2lXADiW.X.Ev.G",
+      "id": "148328c1-5fa8-44ce-8e65-d03a1761e789",
+      "fullname": "dong truong",
+      "username": "dongtp2",
+      "phone": "3219309920213"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+    "register": {
+        "title": "Register",
+        "button.submit":"Register",
+        "have.already.account":"Have already an account?",
+        "login.now":"Login Now"
+    }
+}
