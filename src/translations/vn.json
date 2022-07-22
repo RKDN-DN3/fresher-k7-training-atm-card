@@ -26,5 +26,12 @@
     "inputErrors.email.valid": "Email không đúng định dạng",
     "inputErrors.password.missing": "Mật khẩu không để trống",
     "inputErrors.password.valid": "Mật khẩu phải có ít nhất 8 kí tự, ít nhất 1 chữ cái in hoa, ít nhất 1 chữ số và ít nhất 1 kí tự đặc biệt."
+  },
+  "header": {
+    "hello": "Xin chào",
+    "logout": "Đăng xuất",
+    "register": "Đăng ký",
+    "login": "Đăng nhập",
+    "alert.logout.success": "Đăng xuất thành công!"
   }
 }

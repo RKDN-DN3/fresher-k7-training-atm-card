@@ -6,6 +6,6 @@ const registerUser = (user) => {
 
 const loginUser = (user) => {
   return axiosClient.post("/login", user);
-}
+};
 
 export { registerUser, loginUser };

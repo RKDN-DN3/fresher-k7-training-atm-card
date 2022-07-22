@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { CONSTANTS } from "../../common/constant";
 import FormError from "../../components/FormError";
 import { loginUser } from "../../services";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { loginFailed, loginStarted, loginSuccess } from "../../store/authSlice";
+import Cookies from "js-cookie";
+import { checkStatusResponse } from "../../utils/checkStatusResponse";
 
 const Section = styled.section`
   margin: 0 auto;
@@ -20,7 +23,6 @@ const Form = styled.form`
   padding: 30px 20px;
   border: 1px solid #ebebeb;
 `;
-
 const Input = styled.input`
   outline: none;
   border: none;
@@ -30,7 +32,6 @@ const Input = styled.input`
   font-size: 16px;
   margin: 15px 0;
 `;
-
 const ButtonSubmit = styled.button`
   border: 1px solid #ebebeb;
   padding: 10px 20px;
@@ -45,20 +46,20 @@ function Login() {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const { t } = useTranslation("common");
+  const dispatch = useDispatch();
 
-  const handleLogin = async () => {
-    const userLogin = {
-      email: values.email,
-      password: values.password,
-    };
-
+  const handleLogin = async (user) => {
+    dispatch(loginStarted());
     try {
-      const res = await loginUser(userLogin);
-      if (res && res.status === CONSTANTS.STATUS_200) {
+      const res = await loginUser(user);
+      if (checkStatusResponse(res)) {
+        dispatch(loginSuccess(res.data));
         navigate("/");
+        Cookies.set("user", JSON.stringify(res.data));
         toast.success(t("login.alert.successfully"));
       }
     } catch (error) {
+      dispatch(loginFailed());
       toast.error(error.response.data);
     }
   };
@@ -122,7 +123,11 @@ function Login() {
       if (Object.keys(errors).length > 0) {
         setErrors({});
       }
-      handleLogin();
+      const userLogin = {
+        email: values.email,
+        password: values.password,
+      };
+      handleLogin(userLogin);
     }
 
     setValues({

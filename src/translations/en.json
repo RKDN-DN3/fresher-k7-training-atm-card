@@ -26,5 +26,12 @@
         "inputErrors.email.valid":"Email invalid",
         "inputErrors.password.missing":"Missing Password",
         "inputErrors.password.valid":"Password must be at least 8 characters, must be at least 1 uppercase, must be at least 1 number and must be at least 1 special character"
+    },
+    "header":{
+        "hello":"Hello",
+        "logout":"Logout",
+        "register":"Register",
+        "login":"Login",
+        "alert.logout.success":"Logout Successfully!"
     }
 }
