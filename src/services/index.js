@@ -4,4 +4,8 @@ const registerUser = (user) => {
   return axiosClient.post("/users", user);
 };
 
-export { registerUser };
+const loginUser = (user) => {
+  return axiosClient.post("/login", user);
+}
+
+export { registerUser, loginUser };

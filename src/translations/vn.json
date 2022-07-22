@@ -1,8 +1,30 @@
 {
-    "register": {
-        "title": "Đăng Ký",
-        "button.submit":"Đăng Ký",
-        "have.already.account":"Bạn đã có tài khoản hay chưa?",
-        "login.now":"Đăng nhập ngay"
-    }
+  "register": {
+    "title": "Đăng Ký",
+    "button.submit": "Đăng Ký",
+    "have.already.account": "Bạn đã có tài khoản hay chưa?",
+    "login.now": "Đăng nhập ngay",
+    "inputErrors.fullname.missing": "Họ và Tên không để trống",
+    "inputErrors.username.missing": "Tên người dùng không để trống",
+    "inputErrors.username.valid": "Tên người dùng không đúng định dạng",
+    "inputErrors.phone.missing": "Số điện thoại không để trống",
+    "inputErrors.email.missing": "Email không để trống",
+    "inputErrors.email.valid": "Email không đúng định dạng",
+    "inputErrors.password.missing": "Mật khẩu không để trống",
+    "inputErrors.password.valid": "Mật khẩu phải có ít nhất 8 kí tự, ít nhất 1 chữ cái in hoa, ít nhất 1 chữ số và ít nhất 1 kí tự đặc biệt.",
+    "inputErrors.cpassword.missing": "Xác nhận mật khẩu không để trống",
+    "inputErrors.cpassword.confirm": "Xác nhận mật khẩu không giống với mật khẩu trên",
+    "alert.successfully": "Đăng ký thành công!"
+  },
+  "login": {
+    "title": "Đăng nhập",
+    "button.submit": "Đăng nhập",
+    "not.member": "Bạn có phải thành viên?",
+    "link.signup": "Đăng ký",
+    "alert.successfully": "Đăng nhập thành công!",
+    "inputErrors.email.missing": "Email không để trống",
+    "inputErrors.email.valid": "Email không đúng định dạng",
+    "inputErrors.password.missing": "Mật khẩu không để trống",
+    "inputErrors.password.valid": "Mật khẩu phải có ít nhất 8 kí tự, ít nhất 1 chữ cái in hoa, ít nhất 1 chữ số và ít nhất 1 kí tự đặc biệt."
+  }
 }

@@ -7,6 +7,7 @@ import { registerUser } from "../../services";
 import { CONSTANTS } from "../../common/constant";
 import FormAlert from "../../components/FormAlert";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 const Section = styled.section`
   margin: 0 auto;
@@ -45,7 +46,7 @@ function Register(props) {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [registerSuccess, setRegisterSuccess] = useState(false);
-  const {t} = useTranslation('common');
+  const { t } = useTranslation("common");
 
   const handleRegister = async () => {
     let userRegister = {
@@ -56,11 +57,13 @@ function Register(props) {
       email: values.email,
       password: values.password,
     };
-
-    const res = await registerUser(userRegister);
-
-    if (res && res.status === CONSTANTS.STATUS_201) {
-      setRegisterSuccess(true);
+    try {
+      const res = await registerUser(userRegister);
+      if (res && res.status === CONSTANTS.STATUS_201) {
+        setRegisterSuccess(true);
+      }
+    } catch (error) {
+      toast.error(error.response.data);
     }
   };
 
@@ -86,7 +89,7 @@ function Register(props) {
 
   const validateUsername = (name) => {
     if (name) {
-      return name.match(/^[a-z0-9_-]{3,15}$/)
+      return name.match(/^[a-z0-9_-]{3,15}$/);
     }
   };
 
@@ -100,7 +103,7 @@ function Register(props) {
       values.fullname === undefined ||
       values.fullname === ""
     ) {
-      inputErrors.fullname = "Missing Fullname";
+      inputErrors.fullname = t("register.inputErrors.fullname.missing");
       isSubmit = false;
     }
 
@@ -109,11 +112,11 @@ function Register(props) {
       values.username === undefined ||
       values.username === ""
     ) {
-      inputErrors.username = "Missing Username";
+      inputErrors.username = t("register.inputErrors.username.missing");
       isSubmit = false;
     } else {
       if (!validateUsername(values.username)) {
-        inputErrors.username = "Username invalid";
+        inputErrors.username = t("register.inputErrors.username.valid");
         isSubmit = false;
       }
     }
@@ -123,7 +126,7 @@ function Register(props) {
       values.phone === undefined ||
       values.phone === ""
     ) {
-      inputErrors.phone = "Missing Phone";
+      inputErrors.phone = t("register.inputErrors.phone.missing");
       isSubmit = false;
     }
 
@@ -132,11 +135,11 @@ function Register(props) {
       values.email === undefined ||
       values.email === ""
     ) {
-      inputErrors.email = "Missing Email";
+      inputErrors.email = t("register.inputErrors.email.missing");
       isSubmit = false;
     } else {
       if (!validateEmail(values.email)) {
-        inputErrors.email = "Email invalid";
+        inputErrors.email = t("register.inputErrors.email.valid");
         isSubmit = false;
       }
     }
@@ -146,12 +149,11 @@ function Register(props) {
       values.password === undefined ||
       values.password === ""
     ) {
-      inputErrors.password = "Missing Password";
+      inputErrors.password = t("register.inputErrors.password.missing");
       isSubmit = false;
     } else {
       if (!validatePassword(values.password)) {
-        inputErrors.password =
-          "Password must be at least 8 characters, must be at least 1 uppercase, must be at least 1 number and must be at least 1 special character";
+        inputErrors.password = t("register.inputErrors.password.valid");
         isSubmit = false;
       }
     }
@@ -161,11 +163,11 @@ function Register(props) {
       values.cpassword === undefined ||
       values.cpassword === ""
     ) {
-      inputErrors.cpassword = "Missing Confirm Password";
+      inputErrors.cpassword = t("register.inputErrors.cpassword.missing");
       isSubmit = false;
     } else {
       if (values.cpassword !== values.password) {
-        inputErrors.cpassword = "Confirm Password not match Password";
+        inputErrors.cpassword = t("register.inputErrors.cpassword.confirm");
         isSubmit = false;
       }
     }
@@ -192,9 +194,15 @@ function Register(props) {
 
   return (
     <Section>
-      <Title>{t('register.title')}</Title>
+      <Title>{t("register.title")}</Title>
       <Form onSubmit={handleSubmit}>
-        {registerSuccess && <FormAlert alert="Register successfully!" color="#379543" isRegister="true"/> }
+        {registerSuccess && (
+          <FormAlert
+            alert={t("register.alert.successfully")}
+            color="#379543"
+            isRegister="true"
+          />
+        )}
         <Input
           type="text"
           id="fullname"
@@ -252,9 +260,10 @@ function Register(props) {
           <FormError error={errors.cpassword} />
         )}
 
-        <ButtonSubmit type="submit">{t('register.button.submit')}</ButtonSubmit>
+        <ButtonSubmit type="submit">{t("register.button.submit")}</ButtonSubmit>
         <FooterForm>
-        {t('register.have.already.account')} <Link to="/login">{t('register.login.now')}</Link>
+          {t("register.have.already.account")}{" "}
+          <Link to="/login">{t("register.login.now")}</Link>
         </FooterForm>
       </Form>
     </Section>

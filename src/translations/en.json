@@ -3,6 +3,28 @@
         "title": "Register",
         "button.submit":"Register",
         "have.already.account":"Have already an account?",
-        "login.now":"Login Now"
+        "login.now":"Login Now",
+        "inputErrors.fullname.missing":"Missing Fullname",
+        "inputErrors.username.missing":"Missing Username",
+        "inputErrors.username.valid":"Username invalid",
+        "inputErrors.phone.missing":"Missing Phone",
+        "inputErrors.email.missing":"Missing Email",
+        "inputErrors.email.valid":"Email invalid",
+        "inputErrors.password.missing":"Missing Password",
+        "inputErrors.password.valid":"Password must be at least 8 characters, must be at least 1 uppercase, must be at least 1 number and must be at least 1 special character",
+        "inputErrors.cpassword.missing":"Missing Confirm Password",
+        "inputErrors.cpassword.confirm":"Confirm Password not match Password",
+        "alert.successfully":"Register successfully!"
+    },
+    "login":{
+        "title":"Login",
+        "button.submit":"Login",
+        "not.member":"Not a member?",
+        "link.signup":"Signup",
+        "alert.successfully":"Login successfully!",
+        "inputErrors.email.missing":"Missing Email",
+        "inputErrors.email.valid":"Email invalid",
+        "inputErrors.password.missing":"Missing Password",
+        "inputErrors.password.valid":"Password must be at least 8 characters, must be at least 1 uppercase, must be at least 1 number and must be at least 1 special character"
     }
 }
