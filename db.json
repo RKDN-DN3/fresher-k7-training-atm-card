@@ -35,5 +35,29 @@
       "username": "dongtp2",
       "phone": "3219309920213"
     }
+  ],
+  "atms": [
+    {
+      "number": "000000-00000000-00000",
+      "month": 11,
+      "year": 22,
+      "holder": "TRUONG DONG",
+      "cvv": "123",
+      "system": "mastercard",
+      "bankLogo": "MBBank",
+      "userId": "148328c1-5fa8-44ce-8e65-d03a1761e789",
+      "id": 1
+    },
+    {
+      "number": "00000110000010010",
+      "month": 1,
+      "year": 32,
+      "holder": "TRUONG DONG",
+      "cvv": "321",
+      "system": "visa",
+      "bankLogo": "VietComBank",
+      "userId": "148328c1-5fa8-44ce-8e65-d03a1761e789",
+      "id": 2
+    }
   ]
 }

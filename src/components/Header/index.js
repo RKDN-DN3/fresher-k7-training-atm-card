@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 1440px;
   width: 100%;
   margin: 0 auto;
   background: #f6f8fa;

@@ -1,7 +1,8 @@
 import { checkStatusResponse } from "../utils/checkStatusResponse";
 import { loginFailed, loginStarted, loginSuccess } from "./authSlice";
-import { loginUser } from "../services";
+import { getAllATMCard, loginUser } from "../services";
 import Cookies from "js-cookie";
+import { getATMFailed, getATMStarted, getATMSuccess } from "./atmSlice";
 
 const loginAction = async (user, dispatch, navigate) => {
   dispatch(loginStarted());
@@ -17,4 +18,17 @@ const loginAction = async (user, dispatch, navigate) => {
   }
 };
 
-export { loginAction };
+const getATMAction = async (token, dispatch) => {
+  dispatch(getATMStarted());
+  try {
+    const res = await getAllATMCard(token);
+
+    if (checkStatusResponse(res)) {
+      dispatch(getATMSuccess(res.data));
+    }
+  } catch (error) {
+    dispatch(getATMFailed());
+  }
+};
+
+export { loginAction, getATMAction };
