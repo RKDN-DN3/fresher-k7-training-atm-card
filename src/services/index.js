@@ -9,7 +9,15 @@ const loginUser = (user) => {
 };
 
 const getAllATMCard = (token) => {
-  return axiosClient.get("/600/atms",{ headers: { Authorization: `Bearer ${token}` } });
+  return axiosClient.get("/600/atms", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
-export { registerUser, loginUser, getAllATMCard };
+const addNewATMCard = (data, token) => {
+  return axiosClient.post("/600/atms", data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export { registerUser, loginUser, getAllATMCard, addNewATMCard };

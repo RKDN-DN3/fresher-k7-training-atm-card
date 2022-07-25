@@ -6,6 +6,10 @@ import { selectListATM } from "../../store/atmSlice";
 import { checkTokenExpired } from "../../utils/checkTokenExpired";
 import { getATMAction } from "../../store/apiRequest";
 import styled from "styled-components";
+import FormATM from "../../components/FormATM";
+import { addNewATMCard } from "../../services";
+import { checkStatusResponse } from "../../utils/checkStatusResponse";
+import { toast } from "react-toastify";
 
 const ATMCardNew = styled(ATMCard)`
   &.component-atm-card-container {
@@ -22,8 +26,9 @@ const ButtonAddNew = styled.button`
   display: block;
   background: #18b733;
   color: #fff;
-  &:hover{
-    opacity: .8;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
   }
 `;
 
@@ -31,16 +36,7 @@ function Home() {
   const userAuth = useSelector(selectUserAuth);
   const listATM = useSelector(selectListATM);
   const dispatch = useDispatch();
-  const [data, setData] = useState({
-    number: "",
-    month: 0,
-    year: 0,
-    holder: "",
-    cvv: "",
-    system: "",
-    bankLogo: "",
-    userId: userAuth.user.id,
-  });
+  const [openForm, setOpenForm] = useState(false);
 
   useEffect(() => {
     checkTokenExpired();
@@ -73,15 +69,37 @@ function Home() {
             }
             scale={0}
             system={item.system}
+            bgColor={item.bgColor}
           />
         );
       });
     }
   };
 
+  const handleOpenFormAddNew = () => {
+    setOpenForm(!openForm);
+  };
+
+  const handleAddNew = async (values, color) => {
+    let data = { ...values, bgColor: color, userId: userAuth.user.id };
+    const res = await addNewATMCard(data, userAuth.accessToken);
+    if (checkStatusResponse(res)) {
+      getATMAction(userAuth.accessToken, dispatch);
+      setOpenForm(false);
+      toast.success("Add New ATM Successfully!");
+    }
+    else
+    {
+      toast.error("Add New Failed!");
+    }
+  };
+
   return (
     <div>
-      <ButtonAddNew>Add New</ButtonAddNew>
+      <ButtonAddNew onClick={handleOpenFormAddNew}>Add New</ButtonAddNew>
+      {openForm && (
+        <FormATM setOpenForm={setOpenForm} handleAddNew={handleAddNew} />
+      )}
       {renderListATM()}
     </div>
   );

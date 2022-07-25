@@ -31,7 +31,8 @@ export const authSlice = createSlice({
   },
 });
 
-export const { loginStarted, loginSuccess, loginFailed, logout } = authSlice.actions;
+export const { loginStarted, loginSuccess, loginFailed, logout } =
+  authSlice.actions;
 
 export const selectUserAuth = (state) => state.auth.userAuth;
 

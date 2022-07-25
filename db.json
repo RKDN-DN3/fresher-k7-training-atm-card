@@ -45,6 +45,7 @@
       "cvv": "123",
       "system": "mastercard",
       "bankLogo": "MBBank",
+      "bgColor": "#D4AF37",
       "userId": "148328c1-5fa8-44ce-8e65-d03a1761e789",
       "id": 1
     },
@@ -56,8 +57,57 @@
       "cvv": "321",
       "system": "visa",
       "bankLogo": "VietComBank",
+      "bgColor": "#D4AF37",
       "userId": "148328c1-5fa8-44ce-8e65-d03a1761e789",
       "id": 2
+    },
+    {
+      "number": "1234567812345678",
+      "month": "12",
+      "year": "25",
+      "holder": "dong truong",
+      "cvv": "321",
+      "system": "mastercard",
+      "bankLogo": "Vietinbank",
+      "bgColor": "#D4AF37",
+      "userId": "148328c1-5fa8-44ce-8e65-d03a1761e789",
+      "id": 3
+    },
+    {
+      "number": "1234567812345678",
+      "month": "12",
+      "year": "26",
+      "holder": "dong truong",
+      "cvv": "321",
+      "system": "mastercard",
+      "bankLogo": "MBBank",
+      "bgColor": "#D4AF37",
+      "userId": "148328c1-5fa8-44ce-8e65-d03a1761e789",
+      "id": 4
+    },
+    {
+      "number": "3214568725874126",
+      "month": "06",
+      "year": "26",
+      "holder": "dong truong",
+      "cvv": "256",
+      "system": "visa",
+      "bankLogo": "Agribank",
+      "bgColor": "#D4AF37",
+      "userId": "148328c1-5fa8-44ce-8e65-d03a1761e789",
+      "id": 5
+    },
+    {
+      "number": "1234567865478123",
+      "month": "12",
+      "year": "25",
+      "holder": "dong truong",
+      "cvv": "236",
+      "system": "mastercard",
+      "bankLogo": "Agribank",
+      "bgColor": "#981d22",
+      "userId": "148328c1-5fa8-44ce-8e65-d03a1761e789",
+      "id": 6
     }
   ]
 }
