@@ -7,15 +7,17 @@ import { checkTokenExpired } from "../../utils/checkTokenExpired";
 import { getATMAction } from "../../store/apiRequest";
 import styled from "styled-components";
 import FormATM from "../../components/FormATM";
-import { addNewATMCard, updateATMCard } from "../../services";
+import { addNewATMCard, deleteATMCard, updateATMCard } from "../../services";
 import { checkStatusResponse } from "../../utils/checkStatusResponse";
 import { toast } from "react-toastify";
 
-const ATMCardNew = styled(ATMCard)`
+const ATMWrapper = styled.div`
+  display: inline-block;
+  padding: 5px 10px;
+  vertical-align: top;
+  position: relative;
+
   &.component-atm-card-container {
-    display: inline-block;
-    padding: 5px 10px;
-    vertical-align: top;
   }
 `;
 const ButtonAddNew = styled.button`
@@ -29,6 +31,20 @@ const ButtonAddNew = styled.button`
   cursor: pointer;
   &:hover {
     opacity: 0.8;
+  }
+`;
+const IconDelete = styled.span`
+  display: none;
+  font-size: 25px;
+  font-weight: 600;
+  color: #dd0c0c;
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  cursor: pointer;
+
+  ${ATMWrapper}:hover & {
+    display: block;
   }
 `;
 
@@ -46,6 +62,25 @@ function Home() {
     }
   }, [dispatch, listATM, userAuth.accessToken, userAuth.user.id]);
 
+  const handleOpenFormAddNew = () => {
+    setOpenForm(!openForm);
+  };
+
+  const handleAddNew = async (values, color) => {
+    let data = { ...values, bgColor: color, userId: userAuth.user.id };
+
+    try {
+      const res = await addNewATMCard(data, userAuth.accessToken);
+      if (checkStatusResponse(res)) {
+        getATMAction(userAuth.accessToken, userAuth.user.id, dispatch);
+        setOpenForm(false);
+        toast.success("Add New ATM Card Successfully!");
+      }
+    } catch (error) {
+      toast.error("Add New Failed!");
+    }
+  };
+
   const handleOnChangeUpdate = async (data) => {
     clearTimeout(timer);
 
@@ -58,69 +93,68 @@ function Home() {
       } catch (error) {
         toast.error("Update ATM Card Failed!");
       }
-    }, 3000); 
+    }, 3000);
 
     setTimer(currentTimer);
+  };
+
+  const handleDeleteCardATM = async (e) => {
+    let idATM = e.target.id;
+    try {
+      const res = await deleteATMCard(idATM, userAuth.accessToken);
+      if (checkStatusResponse(res)) {
+        getATMAction(userAuth.accessToken, userAuth.user.id, dispatch);
+        toast.success("Delete card ATM successfully!");
+      }
+    } catch (error) {
+      toast.error("Delete card ATM failed!");
+    }
   };
 
   const renderListATM = () => {
     if (listATM) {
       return listATM.map((item, index) => {
         return (
-          <ATMCardNew
-            id={item.id}
-            key={index}
-            year={item.year}
-            month={item.month}
-            cvv={item.cvv}
-            number={item.number}
-            holderName={item.holder}
-            bankLogo={
-              <h1
-                style={{
-                  fontFamily: "Arial",
-                  fontSize: 30,
-                  color: "white",
-                }}
-              >
-                {item.bankLogo}
-              </h1>
-            }
-            scale={0}
-            system={item.system}
-            bgColor={item.bgColor}
-            onChange={(data) => {
-              const currentData = {
-                ...item,
-                cvv: data.cvv,
-                holder: data.holder,
-                month: data.month,
-                number: data.number,
-                year: data.year,
-              };
-              handleOnChangeUpdate(currentData);
-            }}
-          />
+          <ATMWrapper key={index}>
+            <ATMCard
+              id={item.id}
+              year={item.year}
+              month={item.month}
+              cvv={item.cvv}
+              number={item.number}
+              holderName={item.holder}
+              bankLogo={
+                <h1
+                  style={{
+                    fontFamily: "Arial",
+                    fontSize: 30,
+                    color: "white",
+                  }}
+                >
+                  {item.bankLogo}
+                </h1>
+              }
+              scale={0}
+              system={item.system}
+              bgColor={item.bgColor}
+              onChange={(data) => {
+                const currentData = {
+                  ...item,
+                  cvv: data.cvv,
+                  holder: data.holder,
+                  month: data.month,
+                  number: data.number,
+                  year: data.year,
+                };
+                handleOnChangeUpdate(currentData);
+              }}
+            />
+            <IconDelete id={item.id} onClick={handleDeleteCardATM}>
+              x
+            </IconDelete>
+          </ATMWrapper>
         );
       });
-    }
-  };
-
-  const handleOpenFormAddNew = () => {
-    setOpenForm(!openForm);
-  };
-
-  const handleAddNew = async (values, color) => {
-    let data = { ...values, bgColor: color, userId: userAuth.user.id };
-    try {
-      const res = await addNewATMCard(data, userAuth.accessToken);
-      if (checkStatusResponse(res)) {
-        getATMAction(userAuth.accessToken, dispatch);
-        setOpenForm(false);
-        toast.success("Add New ATM Card Successfully!");
-      }
-    } catch (error) {
-      toast.error("Add New Failed!");
     }
   };
 

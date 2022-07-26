@@ -8,7 +8,7 @@ const loginUser = (user) => {
   return axiosClient.post("/login", user);
 };
 
-const getAllATMCard = (token, userId) => {
+const getAllATMCard = (userId, token) => {
   return axiosClient.get(`/600/atms/?userId=${userId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -26,4 +26,10 @@ const updateATMCard = (data, token, id) => {
   });
 };
 
-export { registerUser, loginUser, getAllATMCard, addNewATMCard, updateATMCard};
+const deleteATMCard = (id, token) => {
+  return axiosClient.delete(`/600/atms/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export { registerUser, loginUser, getAllATMCard, addNewATMCard, updateATMCard, deleteATMCard };

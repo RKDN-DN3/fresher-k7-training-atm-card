@@ -21,7 +21,7 @@ const loginAction = async (user, dispatch, navigate) => {
 const getATMAction = async (token, userId, dispatch) => {
   dispatch(getATMStarted());
   try {
-    const res = await getAllATMCard(token, userId);
+    const res = await getAllATMCard(userId, token);
 
     if (checkStatusResponse(res)) {
       dispatch(getATMSuccess(res.data));
