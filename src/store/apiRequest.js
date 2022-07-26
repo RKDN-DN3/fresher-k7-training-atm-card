@@ -18,10 +18,10 @@ const loginAction = async (user, dispatch, navigate) => {
   }
 };
 
-const getATMAction = async (token, dispatch) => {
+const getATMAction = async (token, userId, dispatch) => {
   dispatch(getATMStarted());
   try {
-    const res = await getAllATMCard(token);
+    const res = await getAllATMCard(token, userId);
 
     if (checkStatusResponse(res)) {
       dispatch(getATMSuccess(res.data));

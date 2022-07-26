@@ -42,9 +42,9 @@ function Home() {
   useEffect(() => {
     checkTokenExpired();
     if (listATM && listATM.length === 0) {
-      getATMAction(userAuth.accessToken, dispatch);
+      getATMAction(userAuth.accessToken, userAuth.user.id, dispatch);
     }
-  }, [dispatch, listATM, userAuth.accessToken]);
+  }, [dispatch, listATM, userAuth.accessToken, userAuth.user.id]);
 
   const handleOnChangeUpdate = async (data) => {
     clearTimeout(timer);

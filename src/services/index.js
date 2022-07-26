@@ -8,8 +8,8 @@ const loginUser = (user) => {
   return axiosClient.post("/login", user);
 };
 
-const getAllATMCard = (token) => {
-  return axiosClient.get("/600/atms", {
+const getAllATMCard = (token, userId) => {
+  return axiosClient.get(`/600/atms/?userId=${userId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
