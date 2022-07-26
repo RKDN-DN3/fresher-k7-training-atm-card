@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import FormError from "../FormError";
-import { SketchPicker, ChromePicker } from "react-color";
+import { ChromePicker } from "react-color";
 
 const Section = styled.section`
   margin: 5px 10px;

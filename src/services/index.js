@@ -20,4 +20,10 @@ const addNewATMCard = (data, token) => {
   });
 };
 
-export { registerUser, loginUser, getAllATMCard, addNewATMCard };
+const updateATMCard = (data, token, id) => {
+  return axiosClient.put(`/600/atms/${id}`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export { registerUser, loginUser, getAllATMCard, addNewATMCard, updateATMCard};
