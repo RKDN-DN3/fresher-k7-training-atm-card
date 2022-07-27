@@ -33,5 +33,36 @@
     "register": "Đăng ký",
     "login": "Đăng nhập",
     "alert.logout.success": "Đăng xuất thành công!"
+  },
+  "home": {
+    "button.add.new": "Thêm mới",
+    "alert.add.new.success": "Thêm mới thẻ ATM thành công!",
+    "alert.add.new.fail": "Thêm mới thất bại!",
+    "alert.update.success": "Cập nhật thẻ ATM thành công!",
+    "alert.update.fail": "Cập nhật thẻ ATM thất bại!",
+    "alert.delete.success": "Xóa thẻ ATM thành công!",
+    "alert.delete.fail": "Xóa thẻ ATM thất bại!"
+  },
+  "formATM": {
+    "title": "Thêm mới ATM",
+    "choose.type": "Chọn loại thẻ",
+    "choose.bank": "Chọn ngân hàng",
+    "add": "Thêm",
+    "cancel": "Hủy",
+    "confirm": "Bạn có chắc?",
+    "inputErrors.number.mising": "Không để trống số thẻ",
+    "inputErrors.number.16.digits": "Số thẻ phải có 16 kí tự",
+    "inputErrors.month.mising": "Không để trống tháng",
+    "inputErrors.month.range.0.12": "Giá trị của tháng phải trong khoảng 0-12",
+    "inputErrors.month.2.digits": "Tháng phải có 2 kí tự",
+    "inputErrors.year.mising": "Không để trống năm",
+    "inputErrors.year.range.22.99": "Giá trị của năm phải trong khoảng 22-99",
+    "inputErrors.year.2.digits": "Năm phải có 2 kí tự",
+    "inputErrors.holder.missing": "Chủ thẻ không được để trống",
+    "inputErrors.holder.only.text": "Chủ thẻ chỉ cho phép chữ",
+    "inputErrors.cvv.missing": "CVV không được để trống",
+    "inputErrors.cvv.3.digits": "CVV phải có 3 kí tự",
+    "inputErrors.system.missing": "Loại thẻ không được để trống",
+    "inputErrors.bankLogo.missing": "Logo ngân hàng không được để trống"
   }
 }

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import FormError from "../FormError";
 import { ChromePicker } from "react-color";
+import { useTranslation } from "react-i18next";
+import { CONSTANTS } from "../../common/constant";
 
 const Section = styled.section`
   margin: 5px 10px;
@@ -104,6 +106,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
     bankLogo: "default",
   });
   const [errors, setErrors] = useState({});
+  const {t} = useTranslation(CONSTANTS.TRANSLATE_COMMON);
 
   const handleChangeCompleteColor = (color) => {
     setColor(color.hex);
@@ -114,7 +117,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
   };
 
   const handleCancelSubmit = () => {
-    if (window.confirm("Are you sure?")) {
+    if (window.confirm(t("formATM.confirm"))) {
       setOpenForm(false);
     }
   };
@@ -157,11 +160,11 @@ function FormATM({ setOpenForm, handleAddNew }) {
       values.number === undefined ||
       values.number === ""
     ) {
-      inputErrors.number = "Missing number";
+      inputErrors.number = t("formATM.inputErrors.number.mising");
       isSubmit = false;
     } else {
       if (!checkNumberHas16Digits(values.number)) {
-        inputErrors.number = "Number must be has 16 digits";
+        inputErrors.number = t("formATM.inputErrors.number.16.digits");
         isSubmit = false;
       }
     }
@@ -171,16 +174,16 @@ function FormATM({ setOpenForm, handleAddNew }) {
       values.month === undefined ||
       values.month === ""
     ) {
-      inputErrors.month = "Missing month";
+      inputErrors.month = t("formATM.inputErrors.month.mising");
       isSubmit = false;
     } else {
       if (checkNumberHas2Digits(values.month)) {
         if (parseInt(values.month) < 1 || parseInt(values.month) > 12) {
-          inputErrors.month = "Value of month must be in range 0-12";
+          inputErrors.month = t("formATM.inputErrors.month.range.0.12");
           isSubmit = false;
         }
       } else {
-        inputErrors.month = "Month must be has 2 digits";
+        inputErrors.month = t("formATM.inputErrors.month.2.digits");
         isSubmit = false;
       }
     }
@@ -190,16 +193,16 @@ function FormATM({ setOpenForm, handleAddNew }) {
       values.year === undefined ||
       values.year === ""
     ) {
-      inputErrors.year = "Missing year";
+      inputErrors.year = t("formATM.inputErrors.year.mising");
       isSubmit = false;
     } else {
       if (checkNumberHas2Digits(values.year)) {
         if (parseInt(values.year) < 22 || parseInt(values.year) > 99) {
-          inputErrors.year = "Value of year must be in range 22-99";
+          inputErrors.year = t("formATM.inputErrors.year.range.22.99");
           isSubmit = false;
         }
       } else {
-        inputErrors.year = "Year must be has 2 digits";
+        inputErrors.year = t("formATM.inputErrors.year.2.digits");
         isSubmit = false;
       }
     }
@@ -209,21 +212,21 @@ function FormATM({ setOpenForm, handleAddNew }) {
       values.holder === undefined ||
       values.holder === ""
     ) {
-      inputErrors.holder = "Missing holder";
+      inputErrors.holder = t("formATM.inputErrors.holder.missing");
       isSubmit = false;
     } else {
       if (!checkOnlyText(values.holder)) {
-        inputErrors.holder = "Holder must be only text";
+        inputErrors.holder = t("formATM.inputErrors.holder.only.text");
         isSubmit = false;
       }
     }
 
     if (values.cvv === null || values.cvv === undefined || values.cvv === "") {
-      inputErrors.cvv = "Missing CVV";
+      inputErrors.cvv = t("formATM.inputErrors.cvv.missing");
       isSubmit = false;
     } else {
       if (!checkNumberOnlyHas3Digits(values.cvv)) {
-        inputErrors.cvv = "CVV must be has 3 digits";
+        inputErrors.cvv = t("formATM.inputErrors.cvv.3.digits");
       }
     }
 
@@ -232,7 +235,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
       values.system === undefined ||
       values.system === "default"
     ) {
-      inputErrors.system = "Missing Type Card";
+      inputErrors.system = t("formATM.inputErrors.system.missing");
       isSubmit = false;
     }
 
@@ -241,7 +244,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
       values.bankLogo === undefined ||
       values.bankLogo === "default"
     ) {
-      inputErrors.bankLogo = "Missing Bank Logo";
+      inputErrors.bankLogo = t("formATM.inputErrors.bankLogo.missing");
       isSubmit = false;
     }
 
@@ -267,6 +270,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
 
   return (
     <Section>
+      <Title>{t("formATM.title")}</Title>
       <Form onSubmit={handleSubmit}>
         <Input
           type="number"
@@ -321,7 +325,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
           name="system"
           onChange={handleOnChange}
         >
-          <option value="default">Choose Type Card</option>
+          <option value="default">{t("formATM.choose.type")}</option>
           {systems.map((system, index) => {
             return (
               <option key={index} value={system}>
@@ -337,7 +341,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
           name="bankLogo"
           onChange={handleOnChange}
         >
-          <option value="default">Choose Bank</option>
+          <option value="default">{t("formATM.choose.bank")}</option>
           {banks.map((bank, index) => {
             return (
               <option key={index} value={bank}>
@@ -360,8 +364,8 @@ function FormATM({ setOpenForm, handleAddNew }) {
           />
         )}
         <FlexBox>
-          <ButtonSubmit type="submit">Add</ButtonSubmit>
-          <ButtonCancel onClick={handleCancelSubmit}>Cancel</ButtonCancel>
+          <ButtonSubmit type="submit">{t("formATM.add")}</ButtonSubmit>
+          <ButtonCancel onClick={handleCancelSubmit}>{t("formATM.cancel")}</ButtonCancel>
         </FlexBox>
       </Form>
     </Section>

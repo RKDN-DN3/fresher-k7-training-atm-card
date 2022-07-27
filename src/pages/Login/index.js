@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { loginFailed, loginStarted, loginSuccess } from "../../store/authSlice";
 import Cookies from "js-cookie";
 import { checkStatusResponse } from "../../utils/checkStatusResponse";
+import { CONSTANTS } from "../../common/constant";
 
 const Section = styled.section`
   margin: 0 auto;
@@ -42,10 +43,10 @@ const FooterForm = styled.div`
 `;
 
 function Login() {
-  const [values, setValues] = useState({ email: "", password: "" });
+  const [values, setValues] = useState({ email: "dong2@gmail.com", password: "Anh1234@" });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-  const { t } = useTranslation("common");
+  const { t } = useTranslation(CONSTANTS.TRANSLATE_COMMON);
   const dispatch = useDispatch();
 
   const handleLogin = async (user) => {

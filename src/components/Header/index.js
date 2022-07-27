@@ -6,6 +6,7 @@ import { logout, selectUserAuth } from "../../store/authSlice";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { CONSTANTS } from "../../common/constant";
 
 const Container = styled.div`
   max-width: 1440px;
@@ -51,7 +52,7 @@ function Header() {
   const userAuth = useSelector(selectUserAuth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { t } = useTranslation("common");
+  const { t, i18n } = useTranslation(CONSTANTS.TRANSLATE_COMMON);
 
   const handleLogout = () => {
     Cookies.remove("user");
@@ -59,10 +60,20 @@ function Header() {
     dispatch(logout());
     toast.success(t("header.alert.logout.success"));
   };
+
+  const handleOnChangeLanguage = (e) => {
+    let value = e.target.value;
+    i18n.changeLanguage(value);
+  }
+
   return (
     <Container>
       <Box>
         <LogoText>ATMCard</LogoText>
+        <select onChange={handleOnChangeLanguage}>
+          <option value="en">EN</option>
+          <option value="vn">VN</option>
+        </select>
         {userAuth ? (
           <MenuRight>
             <span>

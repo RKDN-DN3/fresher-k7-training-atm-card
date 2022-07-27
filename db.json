@@ -1,31 +1,4 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
-      "id": 2,
-      "title": "json-server-2",
-      "author": "typicode2"
-    },
-    {
-      "id": 3,
-      "title": "json-server-3",
-      "author": "typicode2"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
   "users": [
     {
       "email": "dong2@gmail.com",
@@ -37,18 +10,6 @@
     }
   ],
   "atms": [
-    {
-      "number": "1156156161612312",
-      "month": 11,
-      "year": 22,
-      "holder": "TRUONG DONG",
-      "cvv": "345",
-      "system": "mastercard",
-      "bankLogo": "MBBank",
-      "bgColor": "#D4AF37",
-      "userId": "148328c1-5fa8-44ce-8e65-d03a1761e789",
-      "id": 1
-    },
     {
       "number": "1234567865478123",
       "month": "12",

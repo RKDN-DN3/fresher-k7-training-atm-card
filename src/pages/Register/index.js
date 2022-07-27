@@ -4,10 +4,11 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import FormError from "../../components/FormError";
 import { registerUser } from "../../services";
-import { CONSTANTS } from "../../common/constant";
 import FormAlert from "../../components/FormAlert";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { checkStatusResponse } from "../../utils/checkStatusResponse";
+import { CONSTANTS } from "../../common/constant";
 
 const Section = styled.section`
   margin: 0 auto;
@@ -42,11 +43,11 @@ const FooterForm = styled.div`
   float: right;
 `;
 
-function Register(props) {
+function Register() {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [registerSuccess, setRegisterSuccess] = useState(false);
-  const { t } = useTranslation("common");
+  const { t } = useTranslation(CONSTANTS.TRANSLATE_COMMON);
 
   const handleRegister = async () => {
     let userRegister = {
@@ -59,7 +60,7 @@ function Register(props) {
     };
     try {
       const res = await registerUser(userRegister);
-      if (res && res.status === CONSTANTS.STATUS_201) {
+      if (checkStatusResponse(res)) {
         setRegisterSuccess(true);
       }
     } catch (error) {

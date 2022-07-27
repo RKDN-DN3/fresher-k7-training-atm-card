@@ -10,6 +10,8 @@ import FormATM from "../../components/FormATM";
 import { addNewATMCard, deleteATMCard, updateATMCard } from "../../services";
 import { checkStatusResponse } from "../../utils/checkStatusResponse";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+import { CONSTANTS } from "../../common/constant";
 
 const ATMWrapper = styled.div`
   display: inline-block;
@@ -54,6 +56,7 @@ function Home() {
   const dispatch = useDispatch();
   const [openForm, setOpenForm] = useState(false);
   const [timer, setTimer] = useState(null);
+  const {t} = useTranslation(CONSTANTS.TRANSLATE_COMMON)
 
   useEffect(() => {
     checkTokenExpired();
@@ -74,10 +77,10 @@ function Home() {
       if (checkStatusResponse(res)) {
         getATMAction(userAuth.accessToken, userAuth.user.id, dispatch);
         setOpenForm(false);
-        toast.success("Add New ATM Card Successfully!");
+        toast.success(t("home.alert.add.new.success"));
       }
     } catch (error) {
-      toast.error("Add New Failed!");
+      toast.error(t("home.alert.add.new.fail"));
     }
   };
 
@@ -88,10 +91,10 @@ function Home() {
       try {
         const res = await updateATMCard(data, userAuth.accessToken, data.id);
         if (checkStatusResponse(res)) {
-          toast.success("Update ATM Card Successfully!");
+          toast.success(t("home.alert.update.success"));
         }
       } catch (error) {
-        toast.error("Update ATM Card Failed!");
+        toast.error(t("home.alert.update.fail"));
       }
     }, 3000);
 
@@ -104,10 +107,10 @@ function Home() {
       const res = await deleteATMCard(idATM, userAuth.accessToken);
       if (checkStatusResponse(res)) {
         getATMAction(userAuth.accessToken, userAuth.user.id, dispatch);
-        toast.success("Delete card ATM successfully!");
+        toast.success(t("home.alert.delete.success"));
       }
     } catch (error) {
-      toast.error("Delete card ATM failed!");
+      toast.error(t("home.alert.delete.fail"));
     }
   };
 
@@ -160,7 +163,7 @@ function Home() {
 
   return (
     <div>
-      <ButtonAddNew onClick={handleOpenFormAddNew}>Add New</ButtonAddNew>
+      <ButtonAddNew onClick={handleOpenFormAddNew}>{t("home.button.add.new")}</ButtonAddNew>
       {openForm && (
         <FormATM setOpenForm={setOpenForm} handleAddNew={handleAddNew} />
       )}
