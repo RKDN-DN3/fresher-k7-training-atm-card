@@ -11,7 +11,7 @@
   ],
   "atms": [
     {
-      "number": "1234567865478123",
+      "number": "1234567865474564",
       "month": "12",
       "year": "25",
       "holder": "dong truong",
@@ -81,6 +81,18 @@
       "bgColor": "#1b8312",
       "userId": "148328c1-5fa8-44ce-8e65-d03a1761e789",
       "id": 11
+    },
+    {
+      "number": "3256478965897423",
+      "month": "11",
+      "year": "29",
+      "holder": "dong truong",
+      "cvv": "789",
+      "system": "visa",
+      "bankLogo": "Agribank",
+      "bgColor": "#820407",
+      "userId": "148328c1-5fa8-44ce-8e65-d03a1761e789",
+      "id": 12
     }
   ]
 }

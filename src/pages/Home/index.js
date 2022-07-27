@@ -56,14 +56,71 @@ function Home() {
   const dispatch = useDispatch();
   const [openForm, setOpenForm] = useState(false);
   const [timer, setTimer] = useState(null);
-  const {t} = useTranslation(CONSTANTS.TRANSLATE_COMMON)
+  const { t } = useTranslation(CONSTANTS.TRANSLATE_COMMON);
+  const [scale, setScale] = useState(0);
+  const [cardWidth, setCardWidth] = useState(0)
+
+  const detectSize = () => {
+    setCardWidth(window.innerWidth)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', detectSize)
+
+    if(cardWidth > 1400)
+    {
+      setScale(1);
+    }
+    if(cardWidth <= 1280)
+    {
+      setScale(0.9)
+    }
+    if(cardWidth === 1024)
+    {
+      setScale(0.8)
+    }
+    if(cardWidth < 1024)
+    {
+      setScale(0.6)
+    }
+    if(cardWidth <= 900)
+    {
+      setScale(0.85)
+    }
+    if(cardWidth <= 768)
+    {
+      setScale(0.8)
+    }
+    if(cardWidth <= 420)
+    {
+      setScale(0.85)
+    }
+    if(cardWidth <= 400)
+    {
+      setScale(0.8)
+    }
+    if(cardWidth <= 380)
+    {
+      setScale(0.75)
+    }
+    if(cardWidth <= 320)
+    {
+      setScale(0.6)
+    }
+
+    return () => {
+      window.removeEventListener('resize', detectSize)
+    }
+  }, [cardWidth])
+
+  
 
   useEffect(() => {
     checkTokenExpired();
     if (listATM && listATM.length === 0) {
-      getATMAction(userAuth.accessToken, userAuth.user.id, dispatch);
+      getATMAction(userAuth.user.id, dispatch);
     }
-  }, [dispatch, listATM, userAuth.accessToken, userAuth.user.id]);
+  }, [dispatch, listATM, userAuth.user.id]);
 
   const handleOpenFormAddNew = () => {
     setOpenForm(!openForm);
@@ -73,9 +130,9 @@ function Home() {
     let data = { ...values, bgColor: color, userId: userAuth.user.id };
 
     try {
-      const res = await addNewATMCard(data, userAuth.accessToken);
+      const res = await addNewATMCard(data);
       if (checkStatusResponse(res)) {
-        getATMAction(userAuth.accessToken, userAuth.user.id, dispatch);
+        getATMAction(userAuth.user.id, dispatch);
         setOpenForm(false);
         toast.success(t("home.alert.add.new.success"));
       }
@@ -89,7 +146,7 @@ function Home() {
 
     const currentTimer = setTimeout(async () => {
       try {
-        const res = await updateATMCard(data, userAuth.accessToken, data.id);
+        const res = await updateATMCard(data, data.id);
         if (checkStatusResponse(res)) {
           toast.success(t("home.alert.update.success"));
         }
@@ -104,9 +161,9 @@ function Home() {
   const handleDeleteCardATM = async (e) => {
     let idATM = e.target.id;
     try {
-      const res = await deleteATMCard(idATM, userAuth.accessToken);
+      const res = await deleteATMCard(idATM);
       if (checkStatusResponse(res)) {
-        getATMAction(userAuth.accessToken, userAuth.user.id, dispatch);
+        getATMAction(userAuth.user.id, dispatch);
         toast.success(t("home.alert.delete.success"));
       }
     } catch (error) {
@@ -130,14 +187,15 @@ function Home() {
                 <h1
                   style={{
                     fontFamily: "Arial",
-                    fontSize: 30,
+                    fontSize: 20,
                     color: "white",
                   }}
                 >
                   {item.bankLogo}
                 </h1>
               }
-              scale={0}
+              numberFontSize="20"
+              scale={scale}
               system={item.system}
               bgColor={item.bgColor}
               onChange={(data) => {
@@ -163,7 +221,9 @@ function Home() {
 
   return (
     <div>
-      <ButtonAddNew onClick={handleOpenFormAddNew}>{t("home.button.add.new")}</ButtonAddNew>
+      <ButtonAddNew onClick={handleOpenFormAddNew}>
+        {t("home.button.add.new")}
+      </ButtonAddNew>
       {openForm && (
         <FormATM setOpenForm={setOpenForm} handleAddNew={handleAddNew} />
       )}

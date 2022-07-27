@@ -62,8 +62,8 @@ function Header() {
   };
 
   const handleOnChangeLanguage = (e) => {
-    let value = e.target.value;
-    i18n.changeLanguage(value);
+    let language = e.target.value;
+    i18n.changeLanguage(language);
   }
 
   return (

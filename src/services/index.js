@@ -1,5 +1,7 @@
 import axiosClient from "../axios";
 
+const hasAuth = true;
+
 const registerUser = (user) => {
   return axiosClient.post("/users", user);
 };
@@ -8,28 +10,35 @@ const loginUser = (user) => {
   return axiosClient.post("/login", user);
 };
 
-const getAllATMCard = (userId, token) => {
-  return axiosClient.get(`/600/atms/?userId=${userId}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+const getAllATMCard = (userId) => {
+  if (hasAuth) {
+    return axiosClient.get(`/600/atms/?userId=${userId}`);
+  }
 };
 
-const addNewATMCard = (data, token) => {
-  return axiosClient.post("/600/atms", data, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+const addNewATMCard = (data) => {
+  if (hasAuth) {
+    return axiosClient.post("/600/atms", data);
+  }
 };
 
-const updateATMCard = (data, token, id) => {
-  return axiosClient.put(`/600/atms/${id}`, data, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+const updateATMCard = (data, id) => {
+  if (hasAuth) {
+    return axiosClient.put(`/600/atms/${id}`, data);
+  }
 };
 
-const deleteATMCard = (id, token) => {
-  return axiosClient.delete(`/600/atms/${id}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+const deleteATMCard = (id) => {
+  if (hasAuth) {
+    return axiosClient.delete(`/600/atms/${id}`);
+  }
 };
 
-export { registerUser, loginUser, getAllATMCard, addNewATMCard, updateATMCard, deleteATMCard };
+export {
+  registerUser,
+  loginUser,
+  getAllATMCard,
+  addNewATMCard,
+  updateATMCard,
+  deleteATMCard,
+};
