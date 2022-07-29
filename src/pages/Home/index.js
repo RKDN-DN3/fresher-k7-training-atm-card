@@ -15,11 +15,22 @@ import { CONSTANTS } from "../../common/constant";
 
 const ATMWrapper = styled.div`
   display: inline-block;
-  padding: 5px 10px;
+  padding: 10px;
   vertical-align: top;
   position: relative;
 
-  &.component-atm-card-container {
+  @media only screen and (max-width: 1024px) {
+    padding: 10px 15px;
+  }
+
+  @media only screen and (max-width: 768px)
+  {
+    padding: 10px 25px;
+  }
+
+  @media only screen and (max-width: 540px)
+  {
+    padding: 10px;
   }
 `;
 const ButtonAddNew = styled.button`
@@ -34,14 +45,28 @@ const ButtonAddNew = styled.button`
   &:hover {
     opacity: 0.8;
   }
+
+  @media only screen and (max-width: 1024px) {
+    margin: 10px 15px;
+  }
+
+  @media only screen and (max-width: 768px)
+  {
+    margin: 10px 25px;
+  }
+
+  @media only screen and (max-width: 540px)
+  {
+    margin: 10px;
+  }
 `;
 const IconDelete = styled.span`
   display: none;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
   color: #dd0c0c;
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 20px;
   cursor: pointer;
 
@@ -58,62 +83,61 @@ function Home() {
   const [timer, setTimer] = useState(null);
   const { t } = useTranslation(CONSTANTS.TRANSLATE_COMMON);
   const [scale, setScale] = useState(0);
-  const [cardWidth, setCardWidth] = useState(0)
+  const [numberFontSize, setNumberFontSize] = useState(25);
+  const [cardWidth, setCardWidth] = useState(window.innerWidth);
 
   const detectSize = () => {
-    setCardWidth(window.innerWidth)
-  }
+    setCardWidth(window.innerWidth);
+  };
 
   useEffect(() => {
-    window.addEventListener('resize', detectSize)
+    window.addEventListener("resize", detectSize);
 
-    if(cardWidth > 1400)
-    {
-      setScale(1);
+    if (cardWidth > CONSTANTS.LARGE_PC) {
+      setScale(0.6);
+      setNumberFontSize(23);
     }
-    if(cardWidth <= 1280)
-    {
-      setScale(0.9)
+    if (cardWidth <= CONSTANTS.MEDIUM_PC) {
+      setScale(0.65);
+      setNumberFontSize(25);
     }
-    if(cardWidth === 1024)
-    {
-      setScale(0.8)
+    if (cardWidth === CONSTANTS.SMALL_PC) {
+      setScale(0.65);
+      setNumberFontSize(24);
     }
-    if(cardWidth < 1024)
-    {
-      setScale(0.6)
+    if (cardWidth < CONSTANTS.SMALL_PC) {
+      setScale(0.9);
+      setNumberFontSize(24);
     }
-    if(cardWidth <= 900)
-    {
-      setScale(0.85)
+    if (cardWidth <= CONSTANTS.LARGE_TABLET) {
+      setScale(0.8);
+      setNumberFontSize(25);
     }
-    if(cardWidth <= 768)
-    {
-      setScale(0.8)
+    if (cardWidth <= CONSTANTS.MEDIUM_TABLET) {
+      setScale(0.7);
+      setNumberFontSize(24);
     }
-    if(cardWidth <= 420)
-    {
-      setScale(0.85)
+    if (cardWidth <= CONSTANTS.SMALL_TABLET) {
+      setScale(0.5);
+      setNumberFontSize(21);
     }
-    if(cardWidth <= 400)
-    {
-      setScale(0.8)
+    if (cardWidth <= CONSTANTS.LARGE_MOBILE) {
+      setScale(0.83);
+      setNumberFontSize(23);
     }
-    if(cardWidth <= 380)
-    {
-      setScale(0.75)
+    if (cardWidth <= CONSTANTS.W400_MOBILE) {
+      setScale(0.79);
     }
-    if(cardWidth <= 320)
-    {
-      setScale(0.6)
+    if (cardWidth <= CONSTANTS.MEDIUM_MOBILE) {
+      setScale(0.72);
     }
-
+    if (cardWidth <= CONSTANTS.SMALL_MOBILE) {
+      setScale(0.6);
+    }
     return () => {
-      window.removeEventListener('resize', detectSize)
-    }
-  }, [cardWidth])
-
-  
+      window.removeEventListener("resize", detectSize);
+    };
+  }, [cardWidth]);
 
   useEffect(() => {
     checkTokenExpired();
@@ -187,14 +211,14 @@ function Home() {
                 <h1
                   style={{
                     fontFamily: "Arial",
-                    fontSize: 20,
+                    fontSize: numberFontSize,
                     color: "white",
                   }}
                 >
                   {item.bankLogo}
                 </h1>
               }
-              numberFontSize="20"
+              numberFontSize={numberFontSize}
               scale={scale}
               system={item.system}
               bgColor={item.bgColor}
@@ -227,6 +251,7 @@ function Home() {
       {openForm && (
         <FormATM setOpenForm={setOpenForm} handleAddNew={handleAddNew} />
       )}
+
       {renderListATM()}
     </div>
   );

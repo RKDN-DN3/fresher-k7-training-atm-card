@@ -6,9 +6,14 @@ import { useTranslation } from "react-i18next";
 import { CONSTANTS } from "../../common/constant";
 
 const Section = styled.section`
-  margin: 5px 10px;
+  margin: 5px auto;
   max-width: 720px;
   width: 100%;
+
+  @media only screen and (max-width: 420px)
+  {
+    margin: 5px 0px;
+  }
 `;
 const Title = styled.h1`
   font-size: 20px;
@@ -38,6 +43,11 @@ const InputDate = styled.input`
   margin: 15px 0;
   &:last-child {
     margin-left: 10px;
+  }
+
+  @media only screen and (max-width: 420px)
+  {
+    width: 20%;
   }
 `;
 const Select = styled.select`

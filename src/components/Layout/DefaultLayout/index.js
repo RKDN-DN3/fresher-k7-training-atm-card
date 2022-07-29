@@ -9,7 +9,12 @@ const Container = styled.div`
 `
 
 const Content = styled.div`
-  padding: 10px;
+  padding: 10px 25px;
+
+  @media only screen and (max-width: 420px)
+  {
+    padding: 10px;
+  }
 `
 
 function DefaultLayout({ children }) {

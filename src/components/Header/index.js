@@ -31,6 +31,10 @@ const MenuRight = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  @media only screen and (max-width: ${CONSTANTS.LARGE_MOBILE}px) {
+    min-width: 150px;
+  }
 `;
 const LinkHeader = styled(Link)`
   color: #000;
@@ -64,7 +68,7 @@ function Header() {
   const handleOnChangeLanguage = (e) => {
     let language = e.target.value;
     i18n.changeLanguage(language);
-  }
+  };
 
   return (
     <Container>
