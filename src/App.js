@@ -23,7 +23,6 @@ function App() {
                   Component = route.component;
                 }
               }
-
               return (
                 <Route
                   key={index}

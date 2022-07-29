@@ -4,7 +4,7 @@ import App from "./App";
 import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
 import common_en from "./translations/en.json";
-import commen_vn from "./translations/vn.json";
+import common_vn from "./translations/vn.json";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 
@@ -16,7 +16,7 @@ i18next.init({
       common: common_en, // 'common' is our custom namespace
     },
     vn: {
-      common: commen_vn,
+      common: common_vn,
     },
   },
 });

@@ -4,14 +4,17 @@ import FormError from "../FormError";
 import { ChromePicker } from "react-color";
 import { useTranslation } from "react-i18next";
 import { CONSTANTS } from "../../common/constant";
+import {checkNumberHas2Digits} from "../../utils/checkNumberHas2Digits";
+import {checkNumberHas16Digits} from "../../utils/checkNumberHas16Digits";
+import {checkNumberOnlyHas3Digits} from "../../utils/checkNumberOnlyHas3Digits";
+import {checkOnlyText} from "../../utils/checkOnlyText";
 
 const Section = styled.section`
   margin: 5px auto;
   max-width: 720px;
   width: 100%;
 
-  @media only screen and (max-width: 420px)
-  {
+  @media only screen and (max-width: ${CONSTANTS.LARGE_MOBILE}px) {
     margin: 5px 0px;
   }
 `;
@@ -45,8 +48,7 @@ const InputDate = styled.input`
     margin-left: 10px;
   }
 
-  @media only screen and (max-width: 420px)
-  {
+  @media only screen and (max-width: ${CONSTANTS.LARGE_MOBILE}px) {
     width: 20%;
   }
 `;
@@ -89,7 +91,7 @@ const FlexBox = styled.div`
 `;
 const ChromePickerNew = styled(ChromePicker)`
   margin: 5px 0;
-`
+`;
 
 const systems = ["mastercard", "visa"];
 const banks = [
@@ -116,7 +118,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
     bankLogo: "default",
   });
   const [errors, setErrors] = useState({});
-  const {t} = useTranslation(CONSTANTS.TRANSLATE_COMMON);
+  const { t } = useTranslation(CONSTANTS.TRANSLATE_COMMON);
 
   const handleChangeCompleteColor = (color) => {
     setColor(color.hex);
@@ -134,30 +136,6 @@ function FormATM({ setOpenForm, handleAddNew }) {
 
   const handleOnChange = (e) => {
     setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
-  };
-
-  const checkNumberHas16Digits = (number) => {
-    if (number) {
-      return number.match(/^[0-9]{16}$/);
-    }
-  };
-
-  const checkNumberHas2Digits = (number) => {
-    if (number) {
-      return number.match(/^[0-9]{1,2}$/);
-    }
-  };
-
-  const checkNumberOnlyHas3Digits = (number) => {
-    if (number) {
-      return number.match(/^[0-9]{3}$/);
-    }
-  };
-
-  const checkOnlyText = (string) => {
-    if (string) {
-      return string.match(/^[a-zA-Z ]*$/);
-    }
   };
 
   const handleSubmit = (e) => {
@@ -362,7 +340,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
         </Select>
         {errors.bankLogo !== undefined && <FormError error={errors.bankLogo} />}
         <Input
-          style={{ background: color}}
+          style={{ background: color }}
           value={color}
           readOnly
           onClick={handleOpenColorPicker}
@@ -375,7 +353,9 @@ function FormATM({ setOpenForm, handleAddNew }) {
         )}
         <FlexBox>
           <ButtonSubmit type="submit">{t("formATM.add")}</ButtonSubmit>
-          <ButtonCancel onClick={handleCancelSubmit}>{t("formATM.cancel")}</ButtonCancel>
+          <ButtonCancel onClick={handleCancelSubmit}>
+            {t("formATM.cancel")}
+          </ButtonCancel>
         </FlexBox>
       </Form>
     </Section>

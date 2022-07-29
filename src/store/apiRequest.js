@@ -6,7 +6,6 @@ const getATMAction = async (userId, dispatch) => {
   dispatch(getATMStarted());
   try {
     const res = await getAllATMCard(userId);
-
     if (checkStatusResponse(res)) {
       dispatch(getATMSuccess(res.data));
     }

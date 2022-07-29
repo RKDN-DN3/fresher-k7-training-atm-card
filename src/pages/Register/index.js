@@ -8,6 +8,9 @@ import FormAlert from "../../components/FormAlert";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { checkStatusResponse } from "../../utils/checkStatusResponse";
+import { validateEmail } from "../../utils/validateEmail";
+import { validatePassword } from "../../utils/validatePassword";
+import { validateUsername } from "../../utils/validateUsername";
 import { CONSTANTS } from "../../common/constant";
 
 const Section = styled.section`
@@ -23,7 +26,6 @@ const Form = styled.form`
   padding: 30px 20px;
   border: 1px solid #ebebeb;
 `;
-
 const Input = styled.input`
   outline: none;
   border: none;
@@ -33,7 +35,6 @@ const Input = styled.input`
   font-size: 16px;
   margin: 15px 0;
 `;
-
 const ButtonSubmit = styled.button`
   border: 1px solid #ebebeb;
   padding: 10px 20px;
@@ -44,7 +45,14 @@ const FooterForm = styled.div`
 `;
 
 function Register() {
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState({
+    fullname: "",
+    phone: "",
+    username: "",
+    email: "",
+    password: "",
+    cpassword: "",
+  });
   const [errors, setErrors] = useState({});
   const [registerSuccess, setRegisterSuccess] = useState(false);
   const { t } = useTranslation(CONSTANTS.TRANSLATE_COMMON);
@@ -72,26 +80,6 @@ function Register() {
     const name = e.target.name;
     const value = e.target.value;
     setValues((state) => ({ ...state, [name]: value }));
-  };
-
-  const validateEmail = (email) => {
-    if (email) {
-      return email.match(/\S+@\S+\.\S+/);
-    }
-  };
-
-  const validatePassword = (pass) => {
-    if (pass) {
-      return pass.match(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/
-      );
-    }
-  };
-
-  const validateUsername = (name) => {
-    if (name) {
-      return name.match(/^[a-z0-9_-]{3,15}$/);
-    }
   };
 
   const handleSubmit = (e) => {
@@ -260,7 +248,6 @@ function Register() {
         {errors.cpassword !== undefined && (
           <FormError error={errors.cpassword} />
         )}
-
         <ButtonSubmit type="submit">{t("register.button.submit")}</ButtonSubmit>
         <FooterForm>
           {t("register.have.already.account")}{" "}

@@ -19,17 +19,15 @@ const ATMWrapper = styled.div`
   vertical-align: top;
   position: relative;
 
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: ${CONSTANTS.SMALL_PC}px) {
     padding: 10px 15px;
   }
 
-  @media only screen and (max-width: 768px)
-  {
+  @media only screen and (max-width: ${CONSTANTS.MEDIUM_TABLET}px) {
     padding: 10px 25px;
   }
 
-  @media only screen and (max-width: 540px)
-  {
+  @media only screen and (max-width: ${CONSTANTS.SMALL_TABLET}px) {
     padding: 10px;
   }
 `;
@@ -46,17 +44,15 @@ const ButtonAddNew = styled.button`
     opacity: 0.8;
   }
 
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: ${CONSTANTS.SMALL_PC}px) {
     margin: 10px 15px;
   }
 
-  @media only screen and (max-width: 768px)
-  {
+  @media only screen and (max-width: ${CONSTANTS.MEDIUM_TABLET}px) {
     margin: 10px 25px;
   }
 
-  @media only screen and (max-width: 540px)
-  {
+  @media only screen and (max-width: ${CONSTANTS.SMALL_TABLET}px) {
     margin: 10px;
   }
 `;
@@ -248,6 +244,7 @@ function Home() {
       <ButtonAddNew onClick={handleOpenFormAddNew}>
         {t("home.button.add.new")}
       </ButtonAddNew>
+      
       {openForm && (
         <FormATM setOpenForm={setOpenForm} handleAddNew={handleAddNew} />
       )}

@@ -7,6 +7,14 @@
       "fullname": "dong truong",
       "username": "dongtp2",
       "phone": "3219309920213"
+    },
+    {
+      "email": "nam@gmail.com",
+      "password": "$2a$10$j.0PRax9RGXQBC0ZX6G3RejB9kzXzdZnhF4Qckz4HJoGEL5pkeVcq",
+      "id": "579018d5-0775-44b4-b7ab-bbeb79b7409b",
+      "fullname": "nguyen nam",
+      "username": "namnguyen",
+      "phone": "0978654236"
     }
   ],
   "atms": [
@@ -93,6 +101,90 @@
       "bgColor": "#820407",
       "userId": "148328c1-5fa8-44ce-8e65-d03a1761e789",
       "id": 12
+    },
+    {
+      "number": "0321654978654123",
+      "month": "08",
+      "year": "25",
+      "holder": "nguyen van nam",
+      "cvv": "321",
+      "system": "mastercard",
+      "bankLogo": "Vietcombank",
+      "bgColor": "#035628",
+      "userId": "579018d5-0775-44b4-b7ab-bbeb79b7409b",
+      "id": 13
+    },
+    {
+      "number": "1478523696258741",
+      "month": "02",
+      "year": "29",
+      "holder": "nguyen van nam",
+      "cvv": "854",
+      "system": "visa",
+      "bankLogo": "Vietinbank",
+      "bgColor": "#74d1f3",
+      "userId": "579018d5-0775-44b4-b7ab-bbeb79b7409b",
+      "id": 14
+    },
+    {
+      "number": "9632587414526398",
+      "month": "07",
+      "year": "26",
+      "holder": "nguyen van nam",
+      "cvv": "856",
+      "system": "mastercard",
+      "bankLogo": "Agribank",
+      "bgColor": "#ac203d",
+      "userId": "579018d5-0775-44b4-b7ab-bbeb79b7409b",
+      "id": 15
+    },
+    {
+      "number": "6541239823789654",
+      "month": "12",
+      "year": "29",
+      "holder": "nguyen van nam",
+      "cvv": "123",
+      "system": "visa",
+      "bankLogo": "BIDV",
+      "bgColor": "#0e2843",
+      "userId": "579018d5-0775-44b4-b7ab-bbeb79b7409b",
+      "id": 16
+    },
+    {
+      "number": "2587413674369853",
+      "month": "08",
+      "year": "26",
+      "holder": "nguyen van nam",
+      "cvv": "452",
+      "system": "mastercard",
+      "bankLogo": "Techcombank",
+      "bgColor": "#3279bb",
+      "userId": "579018d5-0775-44b4-b7ab-bbeb79b7409b",
+      "id": 17
+    },
+    {
+      "number": "3685214796148523",
+      "month": "08",
+      "year": "30",
+      "holder": "nguyen van nam",
+      "cvv": "863",
+      "system": "visa",
+      "bankLogo": "MBBank",
+      "bgColor": "#1648a1",
+      "userId": "579018d5-0775-44b4-b7ab-bbeb79b7409b",
+      "id": 18
+    },
+    {
+      "number": "6542317985236419",
+      "month": "02",
+      "year": "31",
+      "holder": "nguyen van nam",
+      "cvv": "246",
+      "system": "mastercard",
+      "bankLogo": "VPBank",
+      "bgColor": "#dadad8",
+      "userId": "579018d5-0775-44b4-b7ab-bbeb79b7409b",
+      "id": 19
     }
   ]
 }

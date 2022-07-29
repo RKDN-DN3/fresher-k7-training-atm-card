@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { loginFailed, loginStarted, loginSuccess } from "../../store/authSlice";
 import Cookies from "js-cookie";
 import { checkStatusResponse } from "../../utils/checkStatusResponse";
+import {validateEmail} from "../../utils/validateEmail";
+import {validatePassword} from "../../utils/validatePassword";
 import { CONSTANTS } from "../../common/constant";
 
 const Section = styled.section`
@@ -69,20 +71,6 @@ function Login() {
     const name = e.target.name;
     const value = e.target.value;
     setValues((state) => ({ ...state, [name]: value }));
-  };
-
-  const validateEmail = (email) => {
-    if (email) {
-      return email.match(/\S+@\S+\.\S+/);
-    }
-  };
-
-  const validatePassword = (pass) => {
-    if (pass) {
-      return pass.match(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/
-      );
-    }
   };
 
   const handleSubmit = (e) => {

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { CONSTANTS } from "../../../common/constant";
 import Header from "../../Header";
 
 const Container = styled.div`
@@ -7,11 +8,10 @@ const Container = styled.div`
   width: 100%;
   margin: 0 auto;
 `
-
 const Content = styled.div`
   padding: 10px 25px;
 
-  @media only screen and (max-width: 420px)
+  @media only screen and (max-width: ${CONSTANTS.LARGE_MOBILE}px)
   {
     padding: 10px;
   }
