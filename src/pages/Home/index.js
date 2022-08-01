@@ -180,14 +180,16 @@ function Home() {
 
   const handleDeleteCardATM = async (e) => {
     let idATM = e.target.id;
-    try {
-      const res = await deleteATMCard(idATM);
-      if (checkStatusResponse(res)) {
-        getATMAction(userAuth.user.id, dispatch);
-        toast.success(t("home.alert.delete.success"));
+    if (window.confirm("Are you sure?")) {
+      try {
+        const res = await deleteATMCard(idATM);
+        if (checkStatusResponse(res)) {
+          getATMAction(userAuth.user.id, dispatch);
+          toast.success(t("home.alert.delete.success"));
+        }
+      } catch (error) {
+        toast.error(t("home.alert.delete.fail"));
       }
-    } catch (error) {
-      toast.error(t("home.alert.delete.fail"));
     }
   };
 
@@ -244,7 +246,7 @@ function Home() {
       <ButtonAddNew onClick={handleOpenFormAddNew}>
         {t("home.button.add.new")}
       </ButtonAddNew>
-      
+
       {openForm && (
         <FormATM setOpenForm={setOpenForm} handleAddNew={handleAddNew} />
       )}
