@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Login";
 import { useSelector } from "react-redux";
 import { selectUserAuth } from "./store/authSlice";
+import { LANGUAGE } from "./common/constant";
 
 function App() {
   const userAuth = useSelector(selectUserAuth);
@@ -46,4 +47,4 @@ function App() {
   );
 }
 
-export default withTranslation("common")(App);
+export default withTranslation(LANGUAGE.TRANSLATE_COMMON)(App);

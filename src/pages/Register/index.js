@@ -11,7 +11,7 @@ import { checkStatusResponse } from "../../utils/checkStatusResponse";
 import { validateEmail } from "../../utils/validateEmail";
 import { validatePassword } from "../../utils/validatePassword";
 import { validateUsername } from "../../utils/validateUsername";
-import { CONSTANTS } from "../../common/constant";
+import { LANGUAGE } from "../../common/constant";
 
 const Section = styled.section`
   margin: 0 auto;
@@ -55,7 +55,7 @@ function Register() {
   });
   const [errors, setErrors] = useState({});
   const [registerSuccess, setRegisterSuccess] = useState(false);
-  const { t } = useTranslation(CONSTANTS.TRANSLATE_COMMON);
+  const { t } = useTranslation(LANGUAGE.TRANSLATE_COMMON);
 
   const handleRegister = async () => {
     let userRegister = {

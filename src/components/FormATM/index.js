@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FormError from "../FormError";
 import { ChromePicker } from "react-color";
 import { useTranslation } from "react-i18next";
-import { CONSTANTS } from "../../common/constant";
+import { LANGUAGE, SCREEN } from "../../common/constant";
 import {checkNumberHas2Digits} from "../../utils/checkNumberHas2Digits";
 import {checkNumberHas16Digits} from "../../utils/checkNumberHas16Digits";
 import {checkNumberOnlyHas3Digits} from "../../utils/checkNumberOnlyHas3Digits";
@@ -14,7 +14,7 @@ const Section = styled.section`
   max-width: 720px;
   width: 100%;
 
-  @media only screen and (max-width: ${CONSTANTS.LARGE_MOBILE}px) {
+  @media only screen and (max-width: ${SCREEN.LARGE_MOBILE}px) {
     margin: 5px 0px;
   }
 `;
@@ -48,7 +48,7 @@ const InputDate = styled.input`
     margin-left: 10px;
   }
 
-  @media only screen and (max-width: ${CONSTANTS.LARGE_MOBILE}px) {
+  @media only screen and (max-width: ${SCREEN.LARGE_MOBILE}px) {
     width: 20%;
   }
 `;
@@ -118,7 +118,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
     bankLogo: "default",
   });
   const [errors, setErrors] = useState({});
-  const { t } = useTranslation(CONSTANTS.TRANSLATE_COMMON);
+  const { t } = useTranslation(LANGUAGE.TRANSLATE_COMMON);
 
   const handleChangeCompleteColor = (color) => {
     setColor(color.hex);

@@ -1,8 +1,21 @@
 export const CONSTANTS = {
-  STATUS_200: 200,
-  STATUS_201: 201,
-  STATUS_300: 300,
+  LOGO_TEXT: "ATMCard",
+};
+
+//STATUS
+export const STATUS_200 = 200;
+export const STATUS_201 = 201;
+export const STATUS_300 = 300;
+
+//LANGUAGE
+export const LANGUAGE = {
   TRANSLATE_COMMON: "common",
+  VIETNAM: "VN",
+  ENGLISH: "EN"
+};
+
+//SCREEN
+export const SCREEN = {
   LARGE_PC: 1440,
   MEDIUM_PC: 1280,
   SMALL_PC: 1024,

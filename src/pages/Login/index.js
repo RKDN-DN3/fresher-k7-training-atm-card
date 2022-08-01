@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 import { checkStatusResponse } from "../../utils/checkStatusResponse";
 import {validateEmail} from "../../utils/validateEmail";
 import {validatePassword} from "../../utils/validatePassword";
-import { CONSTANTS } from "../../common/constant";
+import { LANGUAGE } from "../../common/constant";
 
 const Section = styled.section`
   margin: 0 auto;
@@ -48,7 +48,7 @@ function Login() {
   const [values, setValues] = useState({ email: "dong2@gmail.com", password: "Anh1234@" });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-  const { t } = useTranslation(CONSTANTS.TRANSLATE_COMMON);
+  const { t } = useTranslation(LANGUAGE.TRANSLATE_COMMON);
   const dispatch = useDispatch();
 
   const handleLogin = async (user) => {

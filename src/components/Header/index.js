@@ -6,7 +6,7 @@ import { logout, selectUserAuth } from "../../store/authSlice";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import { CONSTANTS } from "../../common/constant";
+import { CONSTANTS, SCREEN, LANGUAGE } from "../../common/constant";
 
 const Container = styled.div`
   max-width: 1440px;
@@ -32,7 +32,7 @@ const MenuRight = styled.div`
   align-items: center;
   justify-content: space-around;
 
-  @media only screen and (max-width: ${CONSTANTS.LARGE_MOBILE}px) {
+  @media only screen and (max-width: ${SCREEN.LARGE_MOBILE}px) {
     min-width: 150px;
   }
 `;
@@ -56,7 +56,7 @@ function Header() {
   const userAuth = useSelector(selectUserAuth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation(CONSTANTS.TRANSLATE_COMMON);
+  const { t, i18n } = useTranslation(LANGUAGE.TRANSLATE_COMMON);
 
   const handleLogout = () => {
     Cookies.remove("user");
@@ -74,10 +74,10 @@ function Header() {
   return (
     <Container>
       <Box>
-        <LogoText>ATMCard</LogoText>
+        <LogoText>{CONSTANTS.LOGO_TEXT}</LogoText>
         <select onChange={handleOnChangeLanguage}>
-          <option value="en">EN</option>
-          <option value="vn">VN</option>
+          <option value={`${LANGUAGE.ENGLISH}`}>{LANGUAGE.ENGLISH}</option>
+          <option value={`${LANGUAGE.VIETNAM}`}>{LANGUAGE.VIETNAM}</option>
         </select>
         {userAuth ? (
           <MenuRight>

@@ -11,7 +11,7 @@ import { addNewATMCard, deleteATMCard, updateATMCard } from "../../services";
 import { checkStatusResponse } from "../../utils/checkStatusResponse";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import { CONSTANTS } from "../../common/constant";
+import { LANGUAGE, SCREEN } from "../../common/constant";
 
 const ATMWrapper = styled.div`
   display: inline-block;
@@ -19,15 +19,15 @@ const ATMWrapper = styled.div`
   vertical-align: top;
   position: relative;
 
-  @media only screen and (max-width: ${CONSTANTS.SMALL_PC}px) {
+  @media only screen and (max-width: ${SCREEN.SMALL_PC}px) {
     padding: 10px 15px;
   }
 
-  @media only screen and (max-width: ${CONSTANTS.MEDIUM_TABLET}px) {
+  @media only screen and (max-width: ${SCREEN.MEDIUM_TABLET}px) {
     padding: 10px 25px;
   }
 
-  @media only screen and (max-width: ${CONSTANTS.SMALL_TABLET}px) {
+  @media only screen and (max-width: ${SCREEN.SMALL_TABLET}px) {
     padding: 10px;
   }
 `;
@@ -44,15 +44,15 @@ const ButtonAddNew = styled.button`
     opacity: 0.8;
   }
 
-  @media only screen and (max-width: ${CONSTANTS.SMALL_PC}px) {
+  @media only screen and (max-width: ${SCREEN.SMALL_PC}px) {
     margin: 10px 15px;
   }
 
-  @media only screen and (max-width: ${CONSTANTS.MEDIUM_TABLET}px) {
+  @media only screen and (max-width: ${SCREEN.MEDIUM_TABLET}px) {
     margin: 10px 25px;
   }
 
-  @media only screen and (max-width: ${CONSTANTS.SMALL_TABLET}px) {
+  @media only screen and (max-width: ${SCREEN.SMALL_TABLET}px) {
     margin: 10px;
   }
 `;
@@ -77,7 +77,7 @@ function Home() {
   const dispatch = useDispatch();
   const [openForm, setOpenForm] = useState(false);
   const [timer, setTimer] = useState(null);
-  const { t } = useTranslation(CONSTANTS.TRANSLATE_COMMON);
+  const { t } = useTranslation(LANGUAGE.TRANSLATE_COMMON);
   const [scale, setScale] = useState(0);
   const [numberFontSize, setNumberFontSize] = useState(25);
   const [cardWidth, setCardWidth] = useState(window.innerWidth);
@@ -89,45 +89,45 @@ function Home() {
   useEffect(() => {
     window.addEventListener("resize", detectSize);
 
-    if (cardWidth > CONSTANTS.LARGE_PC) {
+    if (cardWidth > SCREEN.LARGE_PC) {
       setScale(0.6);
       setNumberFontSize(23);
     }
-    if (cardWidth <= CONSTANTS.MEDIUM_PC) {
+    if (cardWidth <= SCREEN.MEDIUM_PC) {
       setScale(0.65);
       setNumberFontSize(25);
     }
-    if (cardWidth === CONSTANTS.SMALL_PC) {
+    if (cardWidth === SCREEN.SMALL_PC) {
       setScale(0.65);
       setNumberFontSize(24);
     }
-    if (cardWidth < CONSTANTS.SMALL_PC) {
+    if (cardWidth < SCREEN.SMALL_PC) {
       setScale(0.9);
       setNumberFontSize(24);
     }
-    if (cardWidth <= CONSTANTS.LARGE_TABLET) {
+    if (cardWidth <= SCREEN.LARGE_TABLET) {
       setScale(0.8);
       setNumberFontSize(25);
     }
-    if (cardWidth <= CONSTANTS.MEDIUM_TABLET) {
+    if (cardWidth <= SCREEN.MEDIUM_TABLET) {
       setScale(0.7);
       setNumberFontSize(24);
     }
-    if (cardWidth <= CONSTANTS.SMALL_TABLET) {
+    if (cardWidth <= SCREEN.SMALL_TABLET) {
       setScale(0.5);
       setNumberFontSize(21);
     }
-    if (cardWidth <= CONSTANTS.LARGE_MOBILE) {
+    if (cardWidth <= SCREEN.LARGE_MOBILE) {
       setScale(0.83);
       setNumberFontSize(23);
     }
-    if (cardWidth <= CONSTANTS.W400_MOBILE) {
+    if (cardWidth <= SCREEN.W400_MOBILE) {
       setScale(0.79);
     }
-    if (cardWidth <= CONSTANTS.MEDIUM_MOBILE) {
+    if (cardWidth <= SCREEN.MEDIUM_MOBILE) {
       setScale(0.72);
     }
-    if (cardWidth <= CONSTANTS.SMALL_MOBILE) {
+    if (cardWidth <= SCREEN.SMALL_MOBILE) {
       setScale(0.6);
     }
     return () => {

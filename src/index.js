@@ -7,15 +7,16 @@ import common_en from "./translations/en.json";
 import common_vn from "./translations/vn.json";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import { LANGUAGE } from "./common/constant";
 
 i18next.init({
   interpolation: { escapeValue: false }, // React already does escaping
-  lng: "en", // language to use
+  lng: `${LANGUAGE.ENGLISH}`, // language to use
   resources: {
-    en: {
+    EN: {
       common: common_en, // 'common' is our custom namespace
     },
-    vn: {
+    VN: {
       common: common_vn,
     },
   },
