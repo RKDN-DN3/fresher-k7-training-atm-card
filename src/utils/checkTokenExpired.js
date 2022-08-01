@@ -9,7 +9,6 @@ export const checkTokenExpired = () => {
       Date.now() / 1000
     ) {
       Cookies.remove("user");
-      
     }
   }
 };

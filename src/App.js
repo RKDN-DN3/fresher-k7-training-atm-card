@@ -5,10 +5,12 @@ import DefaultLayout from "./components/Layout/DefaultLayout";
 import { withTranslation } from "react-i18next";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Cookies from "js-cookie";
 import Login from "./pages/Login";
+import { useSelector } from "react-redux";
+import { selectUserAuth } from "./store/authSlice";
 
 function App() {
+  const userAuth = useSelector(selectUserAuth);
   return (
     <div>
       <GlobalLayout>
@@ -17,7 +19,7 @@ function App() {
             {publicRoutes?.map((route, index) => {
               let Component = route.component;
               if (route.login) {
-                if (Cookies.get("user") == null) {
+                if (userAuth === null) {
                   Component = Login;
                 } else {
                   Component = route.component;
@@ -27,6 +29,7 @@ function App() {
                 <Route
                   key={index}
                   path={route.path}
+                  index
                   element={
                     <DefaultLayout>
                       <Component />

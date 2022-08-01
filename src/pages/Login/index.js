@@ -57,7 +57,8 @@ function Login() {
       const res = await loginUser(user);
       if (checkStatusResponse(res)) {
         dispatch(loginSuccess(res.data));
-        navigate("/");
+        navigate("/",{ replace: true });
+        window.location.reload();
         Cookies.set("user", JSON.stringify(res.data));
         toast.success(t("login.alert.successfully"));
       }

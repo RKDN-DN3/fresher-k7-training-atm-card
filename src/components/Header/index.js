@@ -61,6 +61,7 @@ function Header() {
   const handleLogout = () => {
     Cookies.remove("user");
     navigate("/login");
+    window.location.reload();
     dispatch(logout());
     toast.success(t("header.alert.logout.success"));
   };

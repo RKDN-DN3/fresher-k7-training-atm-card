@@ -14,6 +14,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+### `npx json-server --watch db.json -m ./node_modules/json-server-auth --port 3004`
+
+Run fake api json-server.
+Open [http://localhost:3004](http://localhost:3004) to view it in your browser.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
