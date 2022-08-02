@@ -12,6 +12,7 @@ import { validateEmail } from "../../utils/validateEmail";
 import { validatePassword } from "../../utils/validatePassword";
 import { validateUsername } from "../../utils/validateUsername";
 import { LANGUAGE } from "../../common/constant";
+import { checkIsEmpty } from "../../utils/checkIsEmpty";
 
 const Section = styled.section`
   margin: 0 auto;
@@ -87,20 +88,12 @@ function Register() {
     let isSubmit = true;
     const inputErrors = {};
 
-    if (
-      values.fullname === null ||
-      values.fullname === undefined ||
-      values.fullname === ""
-    ) {
+    if (checkIsEmpty(values.fullname)) {
       inputErrors.fullname = t("register.inputErrors.fullname.missing");
       isSubmit = false;
     }
 
-    if (
-      values.username === null ||
-      values.username === undefined ||
-      values.username === ""
-    ) {
+    if (checkIsEmpty(values.username)) {
       inputErrors.username = t("register.inputErrors.username.missing");
       isSubmit = false;
     } else {
@@ -110,20 +103,12 @@ function Register() {
       }
     }
 
-    if (
-      values.phone === null ||
-      values.phone === undefined ||
-      values.phone === ""
-    ) {
+    if (checkIsEmpty(values.phone)) {
       inputErrors.phone = t("register.inputErrors.phone.missing");
       isSubmit = false;
     }
 
-    if (
-      values.email === null ||
-      values.email === undefined ||
-      values.email === ""
-    ) {
+    if (checkIsEmpty(values.email)) {
       inputErrors.email = t("register.inputErrors.email.missing");
       isSubmit = false;
     } else {
@@ -133,11 +118,7 @@ function Register() {
       }
     }
 
-    if (
-      values.password === null ||
-      values.password === undefined ||
-      values.password === ""
-    ) {
+    if (checkIsEmpty(values.password)) {
       inputErrors.password = t("register.inputErrors.password.missing");
       isSubmit = false;
     } else {
@@ -147,11 +128,7 @@ function Register() {
       }
     }
 
-    if (
-      values.cpassword === null ||
-      values.cpassword === undefined ||
-      values.cpassword === ""
-    ) {
+    if (checkIsEmpty(values.cpassword)) {
       inputErrors.cpassword = t("register.inputErrors.cpassword.missing");
       isSubmit = false;
     } else {
@@ -164,7 +141,7 @@ function Register() {
     if (!isSubmit) {
       setErrors(inputErrors);
     } else {
-      if (Object.keys(errors).length > 0) {
+      if (!checkIsEmpty(errors)) {
         setErrors({});
       }
       setValues({

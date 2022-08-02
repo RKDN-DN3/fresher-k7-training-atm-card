@@ -12,6 +12,7 @@ import { checkStatusResponse } from "../../utils/checkStatusResponse";
 import { validateEmail } from "../../utils/validateEmail";
 import { validatePassword } from "../../utils/validatePassword";
 import { LANGUAGE } from "../../common/constant";
+import { checkIsEmpty } from "../../utils/checkIsEmpty";
 
 const Section = styled.section`
   margin: 0 auto;
@@ -81,11 +82,7 @@ function Login() {
     let isSubmit = true;
     const inputErrors = {};
 
-    if (
-      values.email === null ||
-      values.email === undefined ||
-      values.email === ""
-    ) {
+    if (checkIsEmpty(values.email)) {
       inputErrors.email = t("login.inputErrors.email.missing");
       isSubmit = false;
     } else {
@@ -95,11 +92,7 @@ function Login() {
       }
     }
 
-    if (
-      values.password === null ||
-      values.password === undefined ||
-      values.password === ""
-    ) {
+    if (checkIsEmpty(values.password)) {
       inputErrors.password = t("login.inputErrors.password.missing");
       isSubmit = false;
     } else {
@@ -112,7 +105,7 @@ function Login() {
     if (!isSubmit) {
       setErrors(inputErrors);
     } else {
-      if (Object.keys(errors).length > 0) {
+      if (!checkIsEmpty(errors)) {
         setErrors({});
       }
       const userLogin = {

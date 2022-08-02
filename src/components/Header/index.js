@@ -60,10 +60,9 @@ function Header() {
 
   const handleLogout = () => {
     Cookies.remove("user");
-    navigate("/login");
-    window.location.reload();
     dispatch(logout());
     toast.success(t("header.alert.logout.success"));
+    navigate("/login");
   };
 
   const handleOnChangeLanguage = (e) => {

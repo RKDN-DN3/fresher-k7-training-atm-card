@@ -1,0 +1,1 @@
+export const checkIsEmpty = val => val == null || !(Object.keys(val) || val).length;

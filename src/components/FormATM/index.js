@@ -4,10 +4,11 @@ import FormError from "../FormError";
 import { ChromePicker } from "react-color";
 import { useTranslation } from "react-i18next";
 import { LANGUAGE, SCREEN } from "../../common/constant";
-import {checkNumberHas2Digits} from "../../utils/checkNumberHas2Digits";
-import {checkNumberHas16Digits} from "../../utils/checkNumberHas16Digits";
-import {checkNumberOnlyHas3Digits} from "../../utils/checkNumberOnlyHas3Digits";
-import {checkOnlyText} from "../../utils/checkOnlyText";
+import { checkNumberHas2Digits } from "../../utils/checkNumberHas2Digits";
+import { checkNumberHas16Digits } from "../../utils/checkNumberHas16Digits";
+import { checkNumberOnlyHas3Digits } from "../../utils/checkNumberOnlyHas3Digits";
+import { checkOnlyText } from "../../utils/checkOnlyText";
+import { checkIsEmpty } from "../../utils/checkIsEmpty";
 
 const Section = styled.section`
   margin: 5px auto;
@@ -143,11 +144,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
     let inputErrors = {};
     let isSubmit = true;
 
-    if (
-      values.number === null ||
-      values.number === undefined ||
-      values.number === ""
-    ) {
+    if (checkIsEmpty(values.number)) {
       inputErrors.number = t("formATM.inputErrors.number.mising");
       isSubmit = false;
     } else {
@@ -157,11 +154,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
       }
     }
 
-    if (
-      values.month === null ||
-      values.month === undefined ||
-      values.month === ""
-    ) {
+    if (checkIsEmpty(values.month)) {
       inputErrors.month = t("formATM.inputErrors.month.mising");
       isSubmit = false;
     } else {
@@ -176,11 +169,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
       }
     }
 
-    if (
-      values.year === null ||
-      values.year === undefined ||
-      values.year === ""
-    ) {
+    if (checkIsEmpty(values.year)) {
       inputErrors.year = t("formATM.inputErrors.year.mising");
       isSubmit = false;
     } else {
@@ -195,11 +184,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
       }
     }
 
-    if (
-      values.holder === null ||
-      values.holder === undefined ||
-      values.holder === ""
-    ) {
+    if (checkIsEmpty(values.holder)) {
       inputErrors.holder = t("formATM.inputErrors.holder.missing");
       isSubmit = false;
     } else {
@@ -209,7 +194,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
       }
     }
 
-    if (values.cvv === null || values.cvv === undefined || values.cvv === "") {
+    if (checkIsEmpty(values.cvv)) {
       inputErrors.cvv = t("formATM.inputErrors.cvv.missing");
       isSubmit = false;
     } else {
@@ -218,20 +203,12 @@ function FormATM({ setOpenForm, handleAddNew }) {
       }
     }
 
-    if (
-      values.system === null ||
-      values.system === undefined ||
-      values.system === "default"
-    ) {
+    if (checkIsEmpty(values.system) || values.system === "default") {
       inputErrors.system = t("formATM.inputErrors.system.missing");
       isSubmit = false;
     }
 
-    if (
-      values.bankLogo === null ||
-      values.bankLogo === undefined ||
-      values.bankLogo === "default"
-    ) {
+    if (checkIsEmpty(values.bankLogo) || values.bankLogo === "default") {
       inputErrors.bankLogo = t("formATM.inputErrors.bankLogo.missing");
       isSubmit = false;
     }
@@ -241,7 +218,7 @@ function FormATM({ setOpenForm, handleAddNew }) {
     } else {
       handleAddNew(values, color);
 
-      if (Object.keys(errors).length > 0) {
+      if (!checkIsEmpty(errors)) {
         setErrors({});
       }
       setValues({

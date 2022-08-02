@@ -12,6 +12,7 @@ import { checkStatusResponse } from "../../utils/checkStatusResponse";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { LANGUAGE, SCREEN } from "../../common/constant";
+import { checkIsEmpty } from "../../utils/checkIsEmpty";
 
 const ATMWrapper = styled.div`
   display: inline-block;
@@ -137,7 +138,7 @@ function Home() {
 
   useEffect(() => {
     checkTokenExpired();
-    if (listATM && listATM.length === 0) {
+    if (listATM && checkIsEmpty(listATM)) {
       getATMAction(userAuth.user.id, dispatch);
     }
   }, [dispatch, listATM, userAuth.user.id]);
