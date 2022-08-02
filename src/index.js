@@ -8,6 +8,7 @@ import common_vn from "./translations/vn.json";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { LANGUAGE } from "./common/constant";
+import setupInterceptors from "./axios/setupInterceptors";
 
 i18next.init({
   interpolation: { escapeValue: false }, // React already does escaping
@@ -32,6 +33,8 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+
+setupInterceptors(store)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

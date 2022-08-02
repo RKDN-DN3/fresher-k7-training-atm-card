@@ -9,8 +9,8 @@ import { useDispatch } from "react-redux";
 import { loginFailed, loginStarted, loginSuccess } from "../../store/authSlice";
 import Cookies from "js-cookie";
 import { checkStatusResponse } from "../../utils/checkStatusResponse";
-import {validateEmail} from "../../utils/validateEmail";
-import {validatePassword} from "../../utils/validatePassword";
+import { validateEmail } from "../../utils/validateEmail";
+import { validatePassword } from "../../utils/validatePassword";
 import { LANGUAGE } from "../../common/constant";
 
 const Section = styled.section`
@@ -45,7 +45,10 @@ const FooterForm = styled.div`
 `;
 
 function Login() {
-  const [values, setValues] = useState({ email: "dong2@gmail.com", password: "Anh1234@" });
+  const [values, setValues] = useState({
+    email: "dong2@gmail.com",
+    password: "Anh1234@",
+  });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const { t } = useTranslation(LANGUAGE.TRANSLATE_COMMON);
@@ -57,10 +60,9 @@ function Login() {
       const res = await loginUser(user);
       if (checkStatusResponse(res)) {
         dispatch(loginSuccess(res.data));
-        navigate("/",{ replace: true });
-        window.location.reload();
         Cookies.set("user", JSON.stringify(res.data));
         toast.success(t("login.alert.successfully"));
+        navigate("/", { replace: true });
       }
     } catch (error) {
       dispatch(loginFailed());
