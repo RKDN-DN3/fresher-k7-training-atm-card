@@ -156,6 +156,8 @@ function Home() {
         getATMAction(userAuth.user.id, dispatch);
         setOpenForm(false);
         toast.success(t("home.alert.add.new.success"));
+      } else {
+        throw new Error("HTTP status: " + res.status);
       }
     } catch (error) {
       toast.error(t("home.alert.add.new.fail"));
@@ -170,6 +172,8 @@ function Home() {
         const res = await updateATMCard(data, data.id);
         if (checkStatusResponse(res)) {
           toast.success(t("home.alert.update.success"));
+        } else {
+          throw new Error("HTTP status: " + res.status);
         }
       } catch (error) {
         toast.error(t("home.alert.update.fail"));
@@ -187,6 +191,8 @@ function Home() {
         if (checkStatusResponse(res)) {
           getATMAction(userAuth.user.id, dispatch);
           toast.success(t("home.alert.delete.success"));
+        } else {
+          throw new Error("HTTP status: " + res.status);
         }
       } catch (error) {
         toast.error(t("home.alert.delete.fail"));

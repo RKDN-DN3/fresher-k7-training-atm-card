@@ -64,6 +64,8 @@ function Login() {
         Cookies.set("user", JSON.stringify(res.data));
         toast.success(t("login.alert.successfully"));
         navigate("/", { replace: true });
+      } else {
+        throw new Error("HTTP status: " + res.status);
       }
     } catch (error) {
       dispatch(loginFailed());

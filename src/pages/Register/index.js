@@ -71,6 +71,8 @@ function Register() {
       const res = await registerUser(userRegister);
       if (checkStatusResponse(res)) {
         setRegisterSuccess(true);
+      } else {
+        throw new Error("HTTP status: " + res.status);
       }
     } catch (error) {
       toast.error(error.response.data);
